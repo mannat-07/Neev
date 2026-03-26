@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neev | Foundational Learning Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 font-sans">
+
+    <nav class="bg-indigo-700 text-white p-4 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold tracking-tight"><i class="fas fa-seedling mr-2"></i>NEEV</h1>
+            <div class="space-x-6">
+                <a href="#" class="hover:text-indigo-200">District Overview</a>
+                <a href="#" class="hover:text-indigo-200">Teacher Portal</a>
+                <button class="bg-white text-indigo-700 px-4 py-1 rounded-full font-semibold">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto py-8 px-4">
+        <div class="mb-8">
+            <h2 class="text-3xl font-bold text-gray-800">State Education Insights</h2>
+            <p class="text-gray-600">Real-time ASER-aligned metrics based on classroom assessments.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <div class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-blue-500">
+                <p class="text-sm text-gray-500 uppercase font-bold">Total Students</p>
+                <p class="text-3xl font-bold text-gray-800">1,24,502</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-green-500">
+                <p class="text-sm text-gray-500 uppercase font-bold">Can Read Story</p>
+                <p class="text-3xl font-bold text-gray-800">43.1%</p>
+                <span class="text-green-500 text-sm"><i class="fas fa-caret-up"></i> 0.3% vs 2022</span>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-yellow-500">
+                <p class="text-sm text-gray-500 uppercase font-bold">Arithmetic (Div)</p>
+                <p class="text-3xl font-bold text-gray-800">26.2%</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-red-500">
+                <p class="text-sm text-gray-500 uppercase font-bold">Critical Action Req.</p>
+                <p class="text-3xl font-bold text-gray-800">12 Districts</p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="bg-white p-6 rounded-xl shadow-sm">
+                <h3 class="text-lg font-bold mb-4 text-gray-700">Reading Proficiency Trend (Std III-V)</h3>
+                <canvas id="trendsChart" height="200"></canvas>
+            </div>
+
+            <div class="bg-indigo-900 text-white p-6 rounded-xl shadow-sm">
+                <h3 class="text-lg font-bold mb-4"><i class="fas fa-mobile-alt mr-2"></i>Teacher's Smart-Group Tool</h3>
+                <div class="bg-indigo-800 p-4 rounded-lg mb-4">
+                    <p class="text-sm opacity-80">Current Class: Grade 3A</p>
+                    <p class="text-xl font-semibold">Today's Focus: Word Recognition</p>
+                </div>
+                <ul class="space-y-3">
+                    <li class="flex justify-between items-center bg-white/10 p-3 rounded">
+                        <span>Group A (Beginners)</span>
+                        <span class="bg-yellow-500 px-2 py-1 rounded text-xs">8 Students</span>
+                    </li>
+                    <li class="flex justify-between items-center bg-white/10 p-3 rounded">
+                        <span>Group B (Letter/Word)</span>
+                        <span class="bg-blue-500 px-2 py-1 rounded text-xs">12 Students</span>
+                    </li>
+                </ul>
+                <button class="w-full mt-6 bg-green-500 hover:bg-green-600 p-3 rounded-lg font-bold transition">
+                    Start AI Oral Assessment
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Chart Logic mimicking your Power BI Dataset
+        const ctx = document.getElementById('trendsChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['2018', '2020', '2022', '2023'],
+                datasets: [{
+                    label: 'Can Read Std II Text (%)',
+                    data: [27.3, 23.1, 20.5, 21.4],
+                    borderColor: '#4f46e5',
+                    backgroundColor: 'rgba(79, 70, 229, 0.1)',
+                    fill: true,
+                    tension: 0.4
+                },
+                {
+                    label: 'Basic Arithmetic (%)',
+                    data: [9.5, 7.2, 6.8, 7.5],
+                    borderColor: '#f59e0b',
+                    borderDash: [5, 5],
+                    fill: false,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'bottom' }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
